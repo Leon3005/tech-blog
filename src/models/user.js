@@ -13,17 +13,17 @@ const schema = {
   username: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
     validate: {
       len: [2, 30],
-      unique: true,
     },
   },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
     validate: {
       isEmail: true,
-      unique: true,
     },
   },
   password: {
