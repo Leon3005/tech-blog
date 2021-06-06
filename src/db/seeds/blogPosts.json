@@ -1,19 +1,17 @@
 [
   {
     "title": "Why MVC is so important",
-    "description":
-      "MVC allows developers to maintain a true separation of concerns.",
+    "description": "MVC allows developers to maintain a true separation of concerns.",
     "user_id": 2
   },
   {
     "title": "Authentication vs Authorization",
-    "description":
-      "There is a difference between authentication and authorization.",
+    "description": "There is a difference between authentication and authorization.",
     "user_id": 1
   },
   {
     "title": "Object-Relational Mapping",
     "description": "I have really loved learning about ORMs.",
     "user_id": 2
-  },
-];
+  }
+]

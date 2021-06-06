@@ -7,13 +7,13 @@ const users = require("./users.json");
 const seed = async () => {
   await sequelize.sync({ force: true });
 
-  await blogPost.bulkCreate(blogPosts);
-
-  console.log("Seeded blog posts");
-
   await user.bulkCreate(users);
 
   console.log("Seeded users");
+
+  await blogPost.bulkCreate(blogPosts);
+
+  console.log("Seeded blog posts");
 
   process.exit(0);
 };
