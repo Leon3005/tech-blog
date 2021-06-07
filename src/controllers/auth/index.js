@@ -13,20 +13,24 @@ const login = async (req, res) => {
 
     const user = await User.findOne({ where: { email } });
 
-    if (!user || !user.checkPassword(password)) {
-      console.log("invalid entry");
+    const validPassword = await user.checkPassword(password);
+
+    if (!user) {
+      console.log("invalid user");
+      return res.send("invalid user");
     }
 
-    if (user.checkPassword(password)) {
+    if (!validPassword) {
       console.log(password);
-      req.session.save(() => {
-        req.session.isLoggedIn = true;
-        return res.send("logged in");
-      });
-      console.log("correct pass");
+      return res.send("invalid password");
     }
 
-    console.log(user);
+    console.log(password);
+    req.session.save(() => {
+      req.session.isLoggedIn = true;
+      return res.send("logged in");
+    });
+    console.log("correct pass");
   } catch (err) {
     console.error(err);
   }
