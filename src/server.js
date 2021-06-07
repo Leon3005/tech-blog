@@ -3,6 +3,7 @@ const cors = require("cors");
 const session = require("express-session");
 require("dotenv").config();
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const handlebars = require("express-handlebars");
 
 const connection = require("./config/connection");
 const routes = require("./routes");
@@ -19,6 +20,9 @@ const sessionOptions = {
     db: connection,
   }),
 };
+
+server.engine("handlebars", handlebars());
+server.set("view engine", "handlebars");
 
 server.use(session(sessionOptions));
 server.use(cors());

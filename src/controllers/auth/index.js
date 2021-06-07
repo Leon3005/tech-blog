@@ -26,7 +26,7 @@ const login = async (req, res) => {
     console.log(password);
     req.session.save(() => {
       req.session.isLoggedIn = true;
-      return res.send("logged in");
+      return res.render("login");
     });
   } catch (err) {
     console.error(err);
