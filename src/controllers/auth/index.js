@@ -16,12 +16,10 @@ const login = async (req, res) => {
     const validPassword = await user.checkPassword(password);
 
     if (!user) {
-      console.log("invalid user");
       return res.send("invalid user");
     }
 
     if (!validPassword) {
-      console.log(password);
       return res.send("invalid password");
     }
 
@@ -30,7 +28,6 @@ const login = async (req, res) => {
       req.session.isLoggedIn = true;
       return res.send("logged in");
     });
-    console.log("correct pass");
   } catch (err) {
     console.error(err);
   }
