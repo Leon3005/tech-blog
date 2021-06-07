@@ -16,18 +16,18 @@ const login = async (req, res) => {
     const validPassword = await user.checkPassword(password);
 
     if (!user) {
-      return res.send("invalid user");
+      return res.redirect("/login");
     }
 
     if (!validPassword) {
-      return res.send("invalid password");
+      return res.redirect("/login");
     }
 
     console.log(password);
     req.session.save(() => {
       req.session.isLoggedIn = true;
-      return res.render("login");
     });
+    res.send("logged in");
   } catch (err) {
     console.error(err);
   }
