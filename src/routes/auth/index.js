@@ -1,9 +1,10 @@
 const { Router } = require("express");
 
-const apiRoutes = require("./api");
+const {login, logout}
 
 const router = Router();
 
-router.use("/api", apiRoutes);
+router.post("/login", login);
+router.post("/logout", logouts);
 
 module.exports = router;
