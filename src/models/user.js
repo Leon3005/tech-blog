@@ -69,7 +69,8 @@ const options = {
 
 class User extends Model {
   async checkPassword(loginPassword) {
-    const isCorrect = await bcrypt.compareSync(loginPassword, this.password);
+    const isCorrect = await bcrypt.compare(loginPassword, this.password);
+    console.log(isCorrect);
     return isCorrect;
   }
 }
