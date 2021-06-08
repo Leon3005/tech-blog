@@ -9,6 +9,7 @@ const login = async (req, res) => {
   */
 
   try {
+    console.log("hi user");
     const { email, password } = req.body;
 
     const user = await User.findOne({ where: { email } });
@@ -16,10 +17,12 @@ const login = async (req, res) => {
     const validPassword = await user.checkPassword(password);
 
     if (!user) {
+      console.log("wrong user");
       return res.redirect("/login");
     }
 
     if (!validPassword) {
+      console.log("wrong pass");
       return res.redirect("/login");
     }
 
