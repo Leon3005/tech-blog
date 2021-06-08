@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const session = require("express-session");
 require("dotenv").config();
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
@@ -26,6 +27,7 @@ server.set("view engine", "handlebars");
 
 server.use(session(sessionOptions));
 server.use(cors());
+server.use(express.static(path.join(__dirname, "../", "public")));
 server.use(express.json({ extended: true }));
 server.use(express.urlencoded({ extended: true }));
 server.use(routes);
