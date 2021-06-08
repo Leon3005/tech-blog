@@ -1,9 +1,9 @@
-// const { Router } = require("express");
+const { Router } = require("express");
 
-// const { renderDashboard } = require("../../controllers/html/privateRender");
+const { renderDashboard } = require("../../controllers/html/privateRender");
 
-// const router = Router();
+const router = Router();
 
-// router.get("/dashboard", renderDashboard);
+router.get("/dashboard", renderDashboard);
 
-// module.exports = router;
+module.exports = router;

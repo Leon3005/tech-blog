@@ -6,5 +6,6 @@ const privateRoutes = require("./private");
 const router = Router();
 
 router.use(publicRoutes);
+router.use(privateRoutes);
 
 module.exports = router;
