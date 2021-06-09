@@ -4,9 +4,6 @@ const handleLogin = async (event) => {
   const email = $("#email").val();
   const password = $("#password").val();
 
-  console.log(email);
-  console.log(password);
-
   const options = {
     method: "POST",
     headers: {

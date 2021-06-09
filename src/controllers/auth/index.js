@@ -9,7 +9,6 @@ const login = async (req, res) => {
   */
 
   try {
-    console.log("hi user");
     const { email, password } = req.body;
 
     const user = await User.findOne({ where: { email } });
@@ -26,13 +25,10 @@ const login = async (req, res) => {
       return res.status(401).json({ error: "Failed Login" });
     }
 
-    console.log(password);
     req.session.save(() => {
       req.session.isLoggedIn = true;
       res.status(200).json(user);
     });
-
-    console.log(req.session);
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: "Failed to login" });
@@ -53,4 +49,32 @@ const logout = (req, res) => {
   }
 };
 
-module.exports = { login, logout };
+const signup = (req, res) => {
+  /*
+      {
+        "username":"cheesetoast"
+        "email":"cheese@email.com",
+        "password":"password123"
+      }
+  */
+  try {
+    const { username, email, password } = req.body;
+
+    const newUser = User.create({
+      username,
+      email,
+      password,
+    });
+
+    req.session.save(() => {
+      (req.session.userId = newUser.id),
+        (req.session.username = newUser.username),
+        (req.session.isLoggedIn = true),
+        res.status(201).json({ success: "User has been created!" });
+    });
+  } catch (error) {
+    return res.status(500).json({ error: "Failed to create user" });
+  }
+};
+
+module.exports = { login, logout, signup };

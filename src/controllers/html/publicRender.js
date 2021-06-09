@@ -7,4 +7,13 @@ const renderLogin = (req, res) => {
   }
 };
 
-module.exports = { renderLogin };
+const renderSignup = (req, res) => {
+  try {
+    res.render("signup");
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json(error);
+  }
+};
+
+module.exports = { renderLogin, renderSignup };
