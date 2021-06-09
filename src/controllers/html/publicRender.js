@@ -16,4 +16,14 @@ const renderSignup = (req, res) => {
   }
 };
 
-module.exports = { renderLogin, renderSignup };
+const renderHomepage = (req, res) => {
+  try {
+    const { isLoggedIn } = req.session;
+    res.render("homepage", { isLoggedIn });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json(error);
+  }
+};
+
+module.exports = { renderLogin, renderSignup, renderHomepage };
