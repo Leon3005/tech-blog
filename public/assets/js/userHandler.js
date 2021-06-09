@@ -27,4 +27,25 @@ const handleLogin = async (event) => {
   }
 };
 
+const handleLogout = async (event) => {
+  event.preventDefault();
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+  };
+
+  const response = await fetch("/auth/logout", options);
+
+  if (response.status !== 200) {
+    console.log("FAILED TO LOG OUT");
+  } else {
+    window.location.replace("/login");
+  }
+};
+
 $("#loginForm").submit(handleLogin);
+$("#logoutButton").click(handleLogout);
