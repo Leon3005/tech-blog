@@ -29,11 +29,10 @@ const login = async (req, res) => {
     console.log(password);
     req.session.save(() => {
       req.session.isLoggedIn = true;
+      res.status(200).json(user);
     });
 
     console.log(req.session);
-
-    return res.status(200).json({ data: "Login successful" });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: "Failed to login" });
