@@ -1,6 +1,6 @@
 const renderDashboard = (req, res) => {
   try {
-    res.send("dashboard");
+    res.render("dashboard");
   } catch (error) {
     console.log(error.message);
     res.status(500).json(error);

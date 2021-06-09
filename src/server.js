@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const session = require("express-session");
 require("dotenv").config();
+const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const handlebars = require("express-handlebars");
 

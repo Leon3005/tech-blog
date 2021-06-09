@@ -8,8 +8,8 @@ const authenticate = require("../middleware/authenticate");
 
 const router = Router();
 
-router.use("/api", authenticate, apiRoutes);
-router.use("/", htmlRoutes);
 router.use("/auth", authRoutes);
+router.use("/", htmlRoutes);
+router.use("/api", authenticate, apiRoutes);
 
 module.exports = router;
