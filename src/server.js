@@ -8,6 +8,7 @@ const handlebars = require("express-handlebars");
 
 const connection = require("./config/connection");
 const routes = require("./routes");
+const { formatDate } = require("./helpers");
 
 const PORT = process.env.PORT || 3005;
 
@@ -22,7 +23,15 @@ const sessionOptions = {
   }),
 };
 
-server.engine("handlebars", handlebars());
+const handlebarsOptions = {
+  helpers: {
+    formatDate,
+  },
+};
+
+const hbs = handlebars.create(handlebarsOptions);
+
+server.engine("handlebars", hbs.engine);
 server.set("view engine", "handlebars");
 
 server.use(session(sessionOptions));
