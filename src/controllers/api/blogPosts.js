@@ -8,6 +8,11 @@ const getUserBlogPosts = async (req, res) => {
       where: {
         user_id: userId,
       },
+      include: [
+        {
+          model: User,
+        },
+      ],
     });
     res.status(200).json(userBlogPosts);
   } catch (error) {
