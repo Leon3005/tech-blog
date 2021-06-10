@@ -26,7 +26,10 @@ const login = async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.isLoggedIn = true;
+      (req.session.isLoggedIn = true),
+        (req.session.username = user.username),
+        (req.session.email = user.email),
+        (req.session.userId = user.id);
       res.status(200).json(user);
     });
   } catch (err) {

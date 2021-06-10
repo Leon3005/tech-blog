@@ -5,6 +5,11 @@ const handleSignup = async (event) => {
   const email = $("#email").val();
   const password = $("#password").val();
 
+  if (!firstName || !lastName || !email || !password || !confirmPassword) {
+    console.log("You must complete all fields");
+    return;
+  }
+
   const options = {
     method: "POST",
     headers: {
@@ -19,8 +24,6 @@ const handleSignup = async (event) => {
   };
 
   const response = await fetch("/auth/signup", options);
-
-  console.log(response);
 
   if (response.status !== 201) {
     console.log("FAILED TO CREATE USER");
