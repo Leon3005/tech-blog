@@ -3,12 +3,14 @@ const { Router } = require("express");
 const {
   getUserBlogPosts,
   getAllBlogPosts,
+  deleteBlogPost,
 } = require("../../controllers/api/blogPosts");
 const authenticate = require("../../middleware/authenticate");
 
 const router = Router();
 
 router.get("/", getAllBlogPosts);
-router.get("/:user_id", getUserBlogPosts);
+router.get("/:user_id", authenticate, getUserBlogPosts);
+router.delete("/:id", deleteBlogPost);
 
 module.exports = router;
