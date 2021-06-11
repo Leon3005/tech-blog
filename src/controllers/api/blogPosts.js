@@ -9,6 +9,7 @@ const getUserBlogPosts = async (req, res) => {
       include: [
         {
           model: User,
+          attributes: ["username"],
         },
       ],
     });
