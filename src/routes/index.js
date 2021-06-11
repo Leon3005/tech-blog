@@ -10,6 +10,6 @@ const router = Router();
 
 router.use("/auth", authRoutes);
 router.use("/", htmlRoutes);
-router.use("/api", authenticate, apiRoutes);
+router.use("/api", apiRoutes);
 
 module.exports = router;

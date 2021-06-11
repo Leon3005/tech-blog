@@ -20,4 +20,21 @@ const getUserBlogPosts = async (req, res) => {
   }
 };
 
-module.exports = { getUserBlogPosts };
+const getAllBlogPosts = async (req, res) => {
+  try {
+    const allBlogPosts = await BlogPost.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+      ],
+    });
+
+    res.status(200).json(allBlogPosts);
+  } catch (error) {
+    return res.status(500).json({ error: "Failed to get Blog Posts!" });
+  }
+};
+
+module.exports = { getUserBlogPosts, getAllBlogPosts };
