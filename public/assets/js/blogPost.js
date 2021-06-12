@@ -1,4 +1,36 @@
-const onClick = async (event) => {
+const createBlogPost = async (event) => {
+  event.preventDefault();
+
+  const title = $("#postTitle").val();
+  const description = $("#postDescription").val();
+
+  if (!title || !description) {
+    console.log("You must complete all fields");
+    return;
+  }
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    body: JSON.stringify({
+      title,
+      description,
+    }),
+  };
+
+  const response = await fetch("/api/blogposts", options);
+
+  if (response.status !== 201) {
+    console.log("FAILED TO CREATE POST");
+  } else {
+    window.location.replace("/dashboard");
+  }
+};
+
+const deleteBlogPost = async (event) => {
   const id = event.currentTarget.id;
 
   const options = {
@@ -21,4 +53,5 @@ const onClick = async (event) => {
   }
 };
 
-$("[name='delete-btn']").click(onClick);
+$("[name='delete-btn']").click(deleteBlogPost);
+$("#newPostForm").submit(createBlogPost);

@@ -47,9 +47,9 @@ const createBlogPost = async (req, res) => {
       user_id: userId,
     });
 
-    res.status(201).json({ success: "User has been created!" });
+    res.status(201).json({ success: "Post has been created!" });
   } catch (error) {
-    return res.status(500).json({ error: "Failed to create user" });
+    return res.status(500).json({ error: "Failed to create post" });
   }
 };
 
