@@ -38,7 +38,6 @@ const schema = {
 const hooks = {
   beforeCreate: async (newUser) => {
     newUser.password = await bcrypt.hash(newUser.password, 10);
-    console.log(newUser.password);
     return newUser;
   },
   beforeUpdate: async (updatedUser) => {

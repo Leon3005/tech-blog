@@ -36,6 +36,23 @@ const getAllBlogPosts = async (req, res) => {
   }
 };
 
+const createBlogPost = async (req, res) => {
+  try {
+    const { title, description } = req.body;
+    const { userId } = req.session;
+
+    const newBlogPost = await BlogPost.create({
+      title,
+      description,
+      user_id: userId,
+    });
+
+    res.status(201).json({ success: "User has been created!" });
+  } catch (error) {
+    return res.status(500).json({ error: "Failed to create user" });
+  }
+};
+
 const deleteBlogPost = async (req, res) => {
   try {
     const { id } = req.params;
@@ -56,4 +73,9 @@ const deleteBlogPost = async (req, res) => {
   }
 };
 
-module.exports = { getUserBlogPosts, getAllBlogPosts, deleteBlogPost };
+module.exports = {
+  getUserBlogPosts,
+  getAllBlogPosts,
+  deleteBlogPost,
+  createBlogPost,
+};
