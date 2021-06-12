@@ -11,6 +11,7 @@ const renderDashboard = async (req, res) => {
       include: [
         {
           model: User,
+          attributes: ["username"],
         },
       ],
     });

@@ -26,6 +26,7 @@ const renderHomepage = async (req, res) => {
       include: [
         {
           model: User,
+          attributes: ["username"],
         },
       ],
     });
@@ -33,6 +34,8 @@ const renderHomepage = async (req, res) => {
     const formattedAllBlogPosts = getAllBlogPosts.map((blogPost) =>
       blogPost.get({ plain: true })
     );
+
+    console.log(formattedAllBlogPosts);
 
     res.render("homepage", { isLoggedIn, formattedAllBlogPosts });
   } catch (error) {
