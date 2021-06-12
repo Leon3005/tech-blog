@@ -1,3 +1,5 @@
+const { User, BlogPost } = require("../../models");
+
 const renderLogin = (req, res) => {
   try {
     res.render("login");
@@ -16,10 +18,23 @@ const renderSignup = (req, res) => {
   }
 };
 
-const renderHomepage = (req, res) => {
+const renderHomepage = async (req, res) => {
   try {
     const { isLoggedIn } = req.session;
-    res.render("homepage", { isLoggedIn });
+
+    const getAllBlogPosts = await BlogPost.findAll({
+      include: [
+        {
+          model: User,
+        },
+      ],
+    });
+
+    const formattedAllBlogPosts = getAllBlogPosts.map((blogPost) =>
+      blogPost.get({ plain: true })
+    );
+
+    res.render("homepage", { isLoggedIn, formattedAllBlogPosts });
   } catch (error) {
     console.log(error.message);
     res.status(500).json(error);

@@ -15,7 +15,7 @@ const renderDashboard = async (req, res) => {
       ],
     });
 
-    const formattedBlogPosts = userBlogPosts.map((blogPost) =>
+    const formattedUserBlogPosts = userBlogPosts.map((blogPost) =>
       blogPost.get({ plain: true })
     );
 
@@ -24,7 +24,7 @@ const renderDashboard = async (req, res) => {
       username,
       email,
       userId,
-      formattedBlogPosts,
+      formattedUserBlogPosts,
     });
   } catch (error) {
     console.log(error.message);
