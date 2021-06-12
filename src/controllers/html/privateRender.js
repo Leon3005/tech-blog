@@ -33,4 +33,13 @@ const renderDashboard = async (req, res) => {
   }
 };
 
-module.exports = { renderDashboard };
+const renderNewPost = async (req, res) => {
+  try {
+    res.render("newPost");
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json(error);
+  }
+};
+
+module.exports = { renderDashboard, renderNewPost };

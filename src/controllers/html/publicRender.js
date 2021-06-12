@@ -35,8 +35,6 @@ const renderHomepage = async (req, res) => {
       blogPost.get({ plain: true })
     );
 
-    console.log(formattedAllBlogPosts);
-
     res.render("homepage", { isLoggedIn, formattedAllBlogPosts });
   } catch (error) {
     console.log(error.message);
