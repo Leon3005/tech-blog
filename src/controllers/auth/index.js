@@ -52,7 +52,7 @@ const logout = (req, res) => {
   }
 };
 
-const signup = (req, res) => {
+const signup = async (req, res) => {
   /*
       {
         "username":"cheesetoast"
@@ -63,16 +63,16 @@ const signup = (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    const newUser = User.create({
+    const newUser = await User.create({
       username,
       email,
       password,
     });
 
     req.session.save(() => {
-      (req.session.userId = newUser.id),
+      (req.session.isLoggedIn = true),
+        (req.session.userId = newUser.id),
         (req.session.username = newUser.username),
-        (req.session.isLoggedIn = true),
         res.status(201).json({ success: "User has been created!" });
     });
   } catch (error) {

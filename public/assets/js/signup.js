@@ -5,7 +5,7 @@ const handleSignup = async (event) => {
   const email = $("#email").val();
   const password = $("#password").val();
 
-  if (!firstName || !lastName || !email || !password || !confirmPassword) {
+  if (!username || !email || !password) {
     console.log("You must complete all fields");
     return;
   }
