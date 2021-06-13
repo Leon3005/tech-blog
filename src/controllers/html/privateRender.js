@@ -33,6 +33,33 @@ const renderDashboard = async (req, res) => {
   }
 };
 
+const renderBlogPost = async (req, res) => {
+  try {
+    const { isLoggedIn } = req.session;
+
+    const getBlogPost = await BlogPost.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+      ],
+    });
+
+    const formattedBlogPost = getBlogPost.get({ plain: true });
+
+    console.log(formattedBlogPost);
+
+    res.render("extendedBlogPost", {
+      isLoggedIn,
+      formattedBlogPost,
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json(error);
+  }
+};
+
 const renderNewBlogPost = async (req, res) => {
   try {
     res.render("newBlogPost");
@@ -42,4 +69,4 @@ const renderNewBlogPost = async (req, res) => {
   }
 };
 
-module.exports = { renderDashboard, renderNewBlogPost };
+module.exports = { renderDashboard, renderNewBlogPost, renderBlogPost };

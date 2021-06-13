@@ -4,8 +4,6 @@ const apiRoutes = require("./api");
 const authRoutes = require("./auth");
 const htmlRoutes = require("./html");
 
-const authenticate = require("../middleware/authenticate");
-
 const router = Router();
 
 router.use("/auth", authRoutes);

@@ -1,0 +1,13 @@
+{{> privateNavbar}}
+
+<div class="card">
+  <div class="card-header">
+    {{formattedBlogPost.user.username}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{formattedBlogPost.title}}</h5>
+    <p class="card-text">{{formattedBlogPost.description}}</p>
+    <small>Created {{formatDate formattedBlogPost.createdAt}}</small>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>

@@ -3,7 +3,10 @@
     {{user.username}}
   </div>
   <div class="card-body">
-    <h5 class="card-title">{{title}}</h5>
+    <button
+      id="{{id}}"
+      class="btn btn-link p-0 text-decoration-none viewBlogPost"
+    ><h5 class="card-title">{{title}}</h5></button>
     <p class="card-text">{{description}}</p>
     <small>Created {{formatDate createdAt}}</small>
   </div>

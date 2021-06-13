@@ -73,9 +73,32 @@ const deleteBlogPost = async (req, res) => {
   }
 };
 
+const getBlogPost = async (req, res) => {
+  try {
+    const chosenBlogPost = await BlogPost.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+      ],
+    });
+
+    // const chosenBlogPost = userBlogPosts.map((blogPost) =>
+    //   blogPost.get({ plain: true })
+    // );
+
+    res.status(200).json(chosenBlogPost);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json(error);
+  }
+};
+
 module.exports = {
   getUserBlogPosts,
   getAllBlogPosts,
   deleteBlogPost,
   createBlogPost,
+  getBlogPost,
 };

@@ -53,6 +53,29 @@ const deleteBlogPost = async (event) => {
   }
 };
 
+const viewBlogPost = async (event) => {
+  const id = event.currentTarget.id;
+
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    params: JSON.stringify({
+      id,
+    }),
+  };
+
+  const response = await fetch(`/api/blogposts/${id}`, options);
+
+  if (response.status !== 200) {
+    console.log("FAILED TO GET POST");
+  } else {
+    window.location.replace(`/${id}`);
+  }
+};
+
 // const handleCommentSubmit = () => {
 //   // POST request with comment message
 //   // /api/posts/{postId}/comments
@@ -61,3 +84,4 @@ const deleteBlogPost = async (event) => {
 
 $("[name='delete-btn']").click(deleteBlogPost);
 $("#newPostForm").submit(createBlogPost);
+$(".viewBlogPost").click(viewBlogPost);
