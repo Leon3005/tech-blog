@@ -72,7 +72,7 @@ const viewBlogPost = async (event) => {
   if (response.status !== 200) {
     console.log("FAILED TO GET POST");
   } else {
-    window.location.replace(`/${id}`);
+    window.location.replace(`/blogposts/${id}`);
   }
 };
 
