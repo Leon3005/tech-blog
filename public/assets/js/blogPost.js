@@ -53,5 +53,11 @@ const deleteBlogPost = async (event) => {
   }
 };
 
+// const handleCommentSubmit = () => {
+//   // POST request with comment message
+//   // /api/posts/{postId}/comments
+//   // on success window location to /posts/{postId}
+// };
+
 $("[name='delete-btn']").click(deleteBlogPost);
 $("#newPostForm").submit(createBlogPost);
