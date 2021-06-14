@@ -1,4 +1,4 @@
-const { BlogPost, User } = require("../../models");
+const { BlogPost, User, Comment } = require("../../models");
 
 const renderDashboard = async (req, res) => {
   try {
@@ -36,8 +36,9 @@ const renderDashboard = async (req, res) => {
 const renderBlogPost = async (req, res) => {
   try {
     const { isLoggedIn } = req.session;
+    const { id } = req.params;
 
-    const getBlogPost = await BlogPost.findByPk(req.params.id, {
+    const getBlogPost = await BlogPost.findByPk(id, {
       include: [
         {
           model: User,
@@ -46,13 +47,24 @@ const renderBlogPost = async (req, res) => {
       ],
     });
 
+    const getComments = await Comment.findAll({
+      where: {
+        blogpost_id: id,
+      },
+    });
+
     const formattedBlogPost = getBlogPost.get({ plain: true });
+    const formattedComments = getComments.map((comment) =>
+      comment.get({ plain: true })
+    );
 
     console.log(formattedBlogPost);
+    console.log(formattedComments);
 
     res.render("extendedBlogPost", {
       isLoggedIn,
       formattedBlogPost,
+      formattedComments,
     });
   } catch (error) {
     console.log(error.message);
