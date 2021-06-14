@@ -2,16 +2,16 @@
   {
     "message": "MVC is so yesterday!!",
     "user_id": 2,
-    "post_id": 1
+    "blogpost_id": 1
   },
   {
     "message": "I agree.",
     "user_id": 1,
-    "post_id": 1
+    "blogpost_id": 1
   },
   {
     "message": "I love React now",
     "user_id": 1,
-    "post_id": 2
+    "blogpost_id": 2
   }
 ]

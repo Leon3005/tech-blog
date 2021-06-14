@@ -33,7 +33,7 @@ const schema = {
 
 const options = {
   sequelize,
-  modelName: "blogpost",
+  modelName: "comment",
   timestamps: true,
   underscored: true,
   freezeTableName: true,
