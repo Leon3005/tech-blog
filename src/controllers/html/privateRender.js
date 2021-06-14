@@ -51,6 +51,10 @@ const renderBlogPost = async (req, res) => {
       where: {
         blogpost_id: id,
       },
+      include: {
+        model: User,
+        attributes: ["username"],
+      },
     });
 
     const formattedBlogPost = getBlogPost.get({ plain: true });
