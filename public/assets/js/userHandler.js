@@ -18,8 +18,6 @@ const handleLogin = async (event) => {
 
   const response = await fetch("/auth/login", options);
 
-  console.log(response);
-
   if (response.status !== 200) {
     console.log("FAILED LOGIN");
   } else {

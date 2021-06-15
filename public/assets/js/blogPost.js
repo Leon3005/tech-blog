@@ -79,7 +79,7 @@ const viewBlogPost = async (event) => {
 const addComment = async (event) => {
   event.preventDefault();
 
-  const id = event.currentTarget.id;
+  const { id } = req.params;
   const message = $("#commentText").val();
 
   if (!comment) {

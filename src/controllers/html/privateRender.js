@@ -62,9 +62,6 @@ const renderBlogPost = async (req, res) => {
       comment.get({ plain: true })
     );
 
-    console.log(formattedBlogPost);
-    console.log(formattedComments);
-
     res.render("extendedBlogPost", {
       isLoggedIn,
       formattedBlogPost,

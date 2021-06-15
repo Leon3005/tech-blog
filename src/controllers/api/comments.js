@@ -22,6 +22,26 @@ const getPostComments = async (req, res) => {
   }
 };
 
-const addComment = async (req, res) => {};
+const addComment = async (req, res) => {
+  try {
+    const { message } = req.body;
+    const { userId } = req.session;
+    const { id } = req.params;
 
-module.exports = { getPostComments };
+    console.log(req.session);
+
+    const newComment = await Comment.create({
+      message,
+      user_id: userId,
+      blogpost_id: id,
+    });
+
+    console.log(newComment);
+
+    res.status(201).json({ success: "Comment has been created!" });
+  } catch (error) {
+    return res.status(500).json({ error: "Failed to create comment" });
+  }
+};
+
+module.exports = { getPostComments, addComment };
