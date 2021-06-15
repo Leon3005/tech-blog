@@ -28,18 +28,15 @@ const addComment = async (req, res) => {
     const { userId } = req.session;
     const { id } = req.params;
 
-    console.log(req.session);
-
     const newComment = await Comment.create({
       message,
       user_id: userId,
       blogpost_id: id,
     });
 
-    console.log(newComment);
-
     res.status(201).json({ success: "Comment has been created!" });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ error: "Failed to create comment" });
   }
 };

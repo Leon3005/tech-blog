@@ -7,6 +7,12 @@ const {
   createBlogPost,
   getBlogPost,
 } = require("../../controllers/api/blogPosts");
+
+const {
+  getPostComments,
+  addComment,
+} = require("../../controllers/api/comments");
+
 const authenticate = require("../../middleware/authenticate");
 
 const router = Router();
@@ -16,5 +22,8 @@ router.get("/:user_id", authenticate, getUserBlogPosts);
 router.get("/:id", authenticate, getBlogPost);
 router.post("/", createBlogPost);
 router.delete("/:id", authenticate, deleteBlogPost);
+
+router.get("/:id/comments", authenticate, getPostComments);
+router.post("/:id/comments", authenticate, addComment);
 
 module.exports = router;

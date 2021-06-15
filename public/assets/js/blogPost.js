@@ -79,10 +79,10 @@ const viewBlogPost = async (event) => {
 const addComment = async (event) => {
   event.preventDefault();
 
-  const { id } = req.params;
+  const { id } = event.currentTarget;
   const message = $("#commentText").val();
 
-  if (!comment) {
+  if (!message) {
     console.log("You must enter a comment!");
     return;
   }
@@ -98,7 +98,7 @@ const addComment = async (event) => {
     }),
   };
 
-  const response = await fetch(`/api/comments/${id}`, options);
+  const response = await fetch(`/api/blogposts/${id}/comments`, options);
 
   if (response.status !== 201) {
     console.log("FAILED TO POST COMMENT");
@@ -116,4 +116,4 @@ const addComment = async (event) => {
 $("[name='delete-btn']").click(deleteBlogPost);
 $("#newPostForm").submit(createBlogPost);
 $(".viewBlogPost").click(viewBlogPost);
-$("#newComment").submit(addComment);
+$(".newComment").submit(addComment);
