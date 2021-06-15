@@ -22,4 +22,6 @@ const getPostComments = async (req, res) => {
   }
 };
 
+const addComment = async (req, res) => {};
+
 module.exports = { getPostComments };

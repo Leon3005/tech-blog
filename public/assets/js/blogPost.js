@@ -76,6 +76,37 @@ const viewBlogPost = async (event) => {
   }
 };
 
+const addComment = async (event) => {
+  event.preventDefault();
+
+  const id = event.currentTarget.id;
+  const message = $("#commentText").val();
+
+  if (!comment) {
+    console.log("You must enter a comment!");
+    return;
+  }
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    body: JSON.stringify({
+      message,
+    }),
+  };
+
+  const response = await fetch(`/api/comments/${id}`, options);
+
+  if (response.status !== 201) {
+    console.log("FAILED TO POST COMMENT");
+  } else {
+    window.location.replace(`/blogposts/${id}`);
+  }
+};
+
 // const handleCommentSubmit = () => {
 //   // POST request with comment message
 //   // /api/posts/{postId}/comments
@@ -85,3 +116,4 @@ const viewBlogPost = async (event) => {
 $("[name='delete-btn']").click(deleteBlogPost);
 $("#newPostForm").submit(createBlogPost);
 $(".viewBlogPost").click(viewBlogPost);
+$("#newComment").submit(addComment);
