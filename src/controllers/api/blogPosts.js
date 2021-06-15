@@ -53,6 +53,20 @@ const createBlogPost = async (req, res) => {
   }
 };
 
+const updateBlogPost = async (req, res) => {
+  try {
+    const { title, description } = req.body;
+    const { id } = req.params;
+    const blogPost = { title, description };
+
+    const updatedBlogPost = await BlogPost.update(blogPost, { where: { id } });
+
+    res.status(201).json({ success: "Post has been updated!" });
+  } catch (error) {
+    return res.status(500).json({ error: "Failed to update post" });
+  }
+};
+
 const deleteBlogPost = async (req, res) => {
   try {
     const { id } = req.params;
@@ -101,4 +115,5 @@ module.exports = {
   deleteBlogPost,
   createBlogPost,
   getBlogPost,
+  updateBlogPost,
 };

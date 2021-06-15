@@ -73,6 +73,26 @@ const renderBlogPost = async (req, res) => {
   }
 };
 
+const renderEditBlogPost = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { userId } = req.session;
+
+    const data = await BlogPost.findOne({ where: { id, user_id: userId } });
+
+    if (!data) {
+      return res.redirect("/dashboard");
+    }
+
+    const blogPost = data.get({ plain: true });
+
+    res.render("editBlogPost", blogPost);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json(error);
+  }
+};
+
 const renderNewBlogPost = async (req, res) => {
   try {
     res.render("newBlogPost");
@@ -82,4 +102,9 @@ const renderNewBlogPost = async (req, res) => {
   }
 };
 
-module.exports = { renderDashboard, renderNewBlogPost, renderBlogPost };
+module.exports = {
+  renderDashboard,
+  renderNewBlogPost,
+  renderBlogPost,
+  renderEditBlogPost,
+};

@@ -1,0 +1,30 @@
+{{> privateNavbar}}
+
+<div
+  class="newPost position-absolute top-50 start-50 translate-middle text-center w-50"
+>
+  <form class="editBlogPost" id="{{id}}">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="updatedPostTitle"
+        placeholder="Post Title"
+        value="{{title}}"
+      />
+      <label for="updatedPostTitle">Post Title</label>
+    </div>
+    <div class="form-floating">
+      <textarea
+        class="form-control"
+        placeholder="Post Description"
+        id="updatedPostDescription"
+        style="height: 200px"
+      ></textarea>
+      <label for="updatedPostDescription">{{description}}</label>
+    </div>
+    <div class="col-auto mt-4">
+      <button type="submit" class="btn btn-primary mb-3 w-25">Post</button>
+    </div>
+  </form>
+</div>

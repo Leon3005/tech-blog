@@ -11,12 +11,11 @@
     <p class="card-text">{{description}}</p>
     <small>Created {{formatDate createdAt}}</small>
     <div class="d-flex justify-content-between">
-      <button
-        type="button"
-        id="{{id}}"
-        name="edit-btn"
-        class="btn btn-success"
-      >Edit</button>
+      <a href="/dashboard/edit/{{id}}"><button
+          type="button"
+          id="{{id}}"
+          class="btn btn-success"
+        >Edit</button></a>
       <button
         type="button"
         id="{{id}}"

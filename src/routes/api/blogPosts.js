@@ -6,6 +6,7 @@ const {
   deleteBlogPost,
   createBlogPost,
   getBlogPost,
+  updateBlogPost,
 } = require("../../controllers/api/blogPosts");
 
 const {
@@ -21,6 +22,7 @@ router.get("/", getAllBlogPosts);
 router.get("/:user_id", authenticate, getUserBlogPosts);
 router.get("/:id", authenticate, getBlogPost);
 router.post("/", createBlogPost);
+router.put("/:id", authenticate, updateBlogPost);
 router.delete("/:id", authenticate, deleteBlogPost);
 
 router.get("/:id/comments", authenticate, getPostComments);

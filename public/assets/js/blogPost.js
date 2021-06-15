@@ -30,6 +30,39 @@ const createBlogPost = async (event) => {
   }
 };
 
+const updateBlogPost = async (event) => {
+  event.preventDefault();
+
+  const { id } = event.currentTarget;
+  const title = $("#updatedPostTitle").val();
+  const description = $("#updatedPostDescription").val();
+
+  if (!title || !description) {
+    console.log("You must complete all fields");
+    return;
+  }
+
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    body: JSON.stringify({
+      title,
+      description,
+    }),
+  };
+
+  const response = await fetch(`/api/blogposts/${id}`, options);
+
+  if (response.status !== 201) {
+    console.log("FAILED TO UPDATE POST");
+  } else {
+    window.location.replace("/dashboard");
+  }
+};
+
 const deleteBlogPost = async (event) => {
   const id = event.currentTarget.id;
 
