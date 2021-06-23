@@ -56,13 +56,15 @@ const createBlogPost = async (req, res) => {
 const updateBlogPost = async (req, res) => {
   try {
     const { title, description } = req.body;
+    console.log(title, description);
     const { id } = req.params;
     const blogPost = { title, description };
 
     const updatedBlogPost = await BlogPost.update(blogPost, { where: { id } });
 
-    res.status(201).json({ success: "Post has been updated!" });
+    res.status(200).json({ success: "Post has been updated!" });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ error: "Failed to update post" });
   }
 };

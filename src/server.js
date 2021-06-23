@@ -36,7 +36,7 @@ server.set("view engine", "handlebars");
 
 server.use(session(sessionOptions));
 server.use(cors());
-server.use(express.static(path.join(__dirname, "../", "public")));
+server.use(express.static(path.join(__dirname, "../public")));
 server.use(express.json({ extended: true }));
 server.use(express.urlencoded({ extended: true }));
 server.use(routes);

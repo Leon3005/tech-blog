@@ -56,7 +56,7 @@ const updateBlogPost = async (event) => {
 
   const response = await fetch(`/api/blogposts/${id}`, options);
 
-  if (response.status !== 201) {
+  if (response.status !== 200) {
     console.log("FAILED TO UPDATE POST");
   } else {
     window.location.replace("/dashboard");
@@ -150,3 +150,4 @@ $("[name='delete-btn']").click(deleteBlogPost);
 $("#newPostForm").submit(createBlogPost);
 $(".viewBlogPost").click(viewBlogPost);
 $(".newComment").submit(addComment);
+$(".update-btn").click(updateBlogPost);
