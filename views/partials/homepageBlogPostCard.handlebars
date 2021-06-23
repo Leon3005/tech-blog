@@ -1,4 +1,4 @@
-<div class="card w-25 m-2 homepageCard">
+<div class="card w-50 m-3 homepageCard">
   <div class="card-header">
     Posted by
     {{user.username}}
@@ -8,7 +8,7 @@
       id="{{id}}"
       class="btn btn-link p-0 text-decoration-none viewBlogPost"
     ><h5 class="card-title">{{title}}</h5></button>
-    <p class="card-text">{{description}}</p>
+    <p class="card-text text-wrap">{{description}}</p>
     <small>Created {{formatDate createdAt}}</small>
   </div>
 </div>

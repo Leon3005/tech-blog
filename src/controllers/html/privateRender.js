@@ -14,6 +14,7 @@ const renderDashboard = async (req, res) => {
           attributes: ["username"],
         },
       ],
+      order: [["createdAt", "DESC"]],
     });
 
     const formattedUserBlogPosts = userBlogPosts.map((blogPost) =>

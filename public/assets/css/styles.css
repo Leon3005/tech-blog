@@ -14,6 +14,10 @@ body {
   background: linear-gradient(to right, #434343, #000000);
 }
 
+#navTitle {
+  color: rgb(192, 192, 192);
+}
+
 #navItem,
 #logoutButton {
   color: white;
@@ -29,6 +33,9 @@ body {
   font-size: 3rem;
 }
 
-.homepageCard {
+.homepageCard,
+.dashboardCard {
   border-radius: 15px;
+  box-shadow: 5px 5px #434343;
+  background-color: rgba(223, 235, 238, 0.3);
 }

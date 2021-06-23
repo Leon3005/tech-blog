@@ -29,6 +29,7 @@ const renderHomepage = async (req, res) => {
           attributes: ["username"],
         },
       ],
+      order: [["createdAt", "DESC"]],
     });
 
     const formattedAllBlogPosts = getAllBlogPosts.map((blogPost) =>
