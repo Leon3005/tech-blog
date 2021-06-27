@@ -1,6 +1,9 @@
 const handleLogin = async (event) => {
   event.preventDefault();
 
+  const loginToast = $("#loginToast");
+  const showLoginToast = new bootstrap.Toast(loginToast);
+
   const email = $("#email").val();
   const password = $("#password").val();
 
@@ -19,7 +22,7 @@ const handleLogin = async (event) => {
   const response = await fetch("/auth/login", options);
 
   if (response.status !== 200) {
-    console.log("FAILED LOGIN");
+    showLoginToast.show();
   } else {
     window.location.replace("/dashboard");
   }
@@ -48,6 +51,9 @@ const handleLogout = async (event) => {
 const handleSignup = async (event) => {
   event.preventDefault();
 
+  const signupToast = $("#signupToast");
+  const showSignupToast = new bootstrap.Toast(signupToast);
+
   const username = $("#username").val();
   const email = $("#email").val();
   const password = $("#password").val();
@@ -73,7 +79,7 @@ const handleSignup = async (event) => {
   const response = await fetch("/auth/signup", options);
 
   if (response.status !== 201) {
-    console.log("FAILED TO CREATE USER");
+    showSignupToast.show();
   } else {
     window.location.replace("/dashboard");
   }

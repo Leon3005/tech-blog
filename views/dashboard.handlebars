@@ -9,3 +9,23 @@
   {{> dashboardBlogPostCard}}
 {{/each}}
 </ul>
+
+<div class="toast position-absolute top-75 start-50 translate-middle" role="alert" aria-live="assertive" aria-atomic="true" id="deletePostToast">
+  <div class="toast-header">
+    <strong class="me-auto">Failed to delete post!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+  <div class="toast-body">
+    Please try again.
+  </div>
+</div>
+
+<div class="toast position-absolute top-75 start-50 translate-middle" role="alert" aria-live="assertive" aria-atomic="true" id="viewPostToast">
+  <div class="toast-header">
+    <strong class="me-auto">Failed to view post!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+  <div class="toast-body">
+    Please try again.
+  </div>
+</div>

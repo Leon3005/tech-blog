@@ -1,11 +1,13 @@
 const createBlogPost = async (event) => {
   event.preventDefault();
 
+  const newPostToast = $("#newPostToast");
+  const showNewPostToast = new bootstrap.Toast(newPostToast);
   const title = $("#postTitle").val();
   const description = $("#postDescription").val();
 
   if (!title || !description) {
-    console.log("You must complete all fields");
+    showNewPostToast.show();
     return;
   }
 
@@ -24,7 +26,7 @@ const createBlogPost = async (event) => {
   const response = await fetch("/api/blogposts", options);
 
   if (response.status !== 201) {
-    console.log("FAILED TO CREATE POST");
+    showNewPostToast.show();
   } else {
     window.location.replace("/dashboard");
   }
@@ -33,12 +35,14 @@ const createBlogPost = async (event) => {
 const updateBlogPost = async (event) => {
   event.preventDefault();
 
+  const editPostToast = $("#editPostToast");
+  const showEditPostToast = new bootstrap.Toast(editPostToast);
   const { id } = event.currentTarget;
   const title = $("#updatedPostTitle").val();
   const description = $("#updatedPostDescription").val();
 
   if (!title || !description) {
-    console.log("You must complete all fields");
+    showEditPostToast.show();
     return;
   }
 
@@ -57,7 +61,7 @@ const updateBlogPost = async (event) => {
   const response = await fetch(`/api/blogposts/${id}`, options);
 
   if (response.status !== 200) {
-    console.log("FAILED TO UPDATE POST");
+    showEditPostToast.show();
   } else {
     window.location.replace("/dashboard");
   }
@@ -65,6 +69,9 @@ const updateBlogPost = async (event) => {
 
 const deleteBlogPost = async (event) => {
   const id = event.currentTarget.id;
+
+  const deletePostToast = $("#deletePostToast");
+  const showDeletePostToast = new bootstrap.Toast(deletePostToast);
 
   const options = {
     method: "DELETE",
@@ -80,7 +87,7 @@ const deleteBlogPost = async (event) => {
   const response = await fetch(`/api/blogposts/${id}`, options);
 
   if (response.status !== 200) {
-    console.log("FAILED TO UPDATE POST");
+    showDeletePostToast.show();
   } else {
     window.location.replace("/dashboard");
   }
@@ -88,6 +95,9 @@ const deleteBlogPost = async (event) => {
 
 const viewBlogPost = async (event) => {
   const id = event.currentTarget.id;
+
+  const viewPostToast = $("#viewPostToast");
+  const showViewPostToast = new bootstrap.Toast(viewPostToast);
 
   const options = {
     method: "GET",
@@ -103,7 +113,7 @@ const viewBlogPost = async (event) => {
   const response = await fetch(`/api/blogposts/${id}`, options);
 
   if (response.status !== 200) {
-    console.log("FAILED TO GET POST");
+    showViewPostToast.show();
   } else {
     window.location.replace(`/blogposts/${id}`);
   }
@@ -112,11 +122,13 @@ const viewBlogPost = async (event) => {
 const addComment = async (event) => {
   event.preventDefault();
 
+  const addCommentToast = $("#addCommentToast");
+  const showAddCommentToast = new bootstrap.Toast(addCommentToast);
   const { id } = event.currentTarget;
   const message = $("#commentText").val();
 
   if (!message) {
-    console.log("You must enter a comment!");
+    showAddCommentToast.show();
     return;
   }
 
@@ -134,17 +146,11 @@ const addComment = async (event) => {
   const response = await fetch(`/api/blogposts/${id}/comments`, options);
 
   if (response.status !== 201) {
-    console.log("FAILED TO POST COMMENT");
+    showAddCommentToast.show();
   } else {
     window.location.replace(`/blogposts/${id}`);
   }
 };
-
-// const handleCommentSubmit = () => {
-//   // POST request with comment message
-//   // /api/posts/{postId}/comments
-//   // on success window location to /posts/{postId}
-// };
 
 $("[name='delete-btn']").click(deleteBlogPost);
 $("#newPostForm").submit(createBlogPost);
