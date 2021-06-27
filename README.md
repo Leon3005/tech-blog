@@ -4,6 +4,8 @@
 
 The Tech Blog allows users to log in, create an account that is then securely stored to the database with bcrypt, create posts, update posts, delete posts, and add comments via a graphical interface.
 
+Deployed application link: [Tech Blog](https://mighty-wildwood-56891.herokuapp.com/)
+
 ## Table of Contents
 
 - [Tech Blog](#tech-blog)
